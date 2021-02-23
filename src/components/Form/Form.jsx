@@ -11,6 +11,7 @@ const Label = styled.label`
   font-size: 1rem;
 `
 const TextArea = styled.textarea`
+  width: 30%;
   padding: 10px;
 
   resize: none;
@@ -18,7 +19,7 @@ const TextArea = styled.textarea`
 const Button = styled.button`
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 70%;
 
   cursor: pointer;
 `

@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Form from '../Form/Form'
+import Note from './Note/Note'
 
+const NotesElement = styled.div`
+  width: 1000px;
+`
 const Header = styled.header`
   display: flex;
   align-items: center;
@@ -16,20 +20,37 @@ const Button = styled.button`
   height: 30px;
   cursor: pointer;
 `
+const Content = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 40px;
+`
 
 function Notes(props) {
+  console.log(props)
+
+  const onLoad = () => {
+    props.onLoad()
+  }
   return (
-    <div>
+    <NotesElement>
       <Header>
         <Title>Notes</Title>
-        <Button>ReFresh</Button>
+        <Button onClick={onLoad}>ReFresh</Button>
       </Header>
-      <div></div>
+      <Content>
+        {props.children.map((o) => (
+          <Note key={o.id}>{o.content}</Note>
+        ))}
+      </Content>
       <Form />
-    </div>
+    </NotesElement>
   )
 }
 
-Notes.propTypes = {}
+Notes.propTypes = {
+  onLoad: PropTypes.func,
+}
 
 export default Notes
