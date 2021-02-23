@@ -1,6 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const NoteElement = styled.div`
   position: relative;
@@ -21,14 +21,22 @@ const Button = styled.button`
 `
 
 function Note(props) {
+  const onDelete = (event) => {
+    props.onDelete(event.target.id)
+  }
+
   return (
     <NoteElement>
       {props.children}
-      <Button>X</Button>
+      <Button id={props.id} onClick={onDelete}>
+        X
+      </Button>
     </NoteElement>
   )
 }
 
-Note.propTypes = {}
+Note.propTypes = {
+  onDelete: PropTypes.func,
+}
 
 export default Note

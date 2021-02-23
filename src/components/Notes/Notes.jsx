@@ -15,21 +15,29 @@ const Title = styled.h1`
   /* margin: 0; */
 `
 const Button = styled.button`
-  margin-top: 10px;
   margin-left: 10px;
-  height: 30px;
+  font-size: 2rem;
+  color: green;
+  background-color: white;
+  border-radius: 50%;
   cursor: pointer;
 `
 const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin-bottom: 40px;
+
+  div {
+    margin-bottom: 5%;
+  }
+
+  div:nth-child(3n + 2) {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 `
 
 function Notes(props) {
-  console.log(props)
-
   const onLoad = () => {
     props.onLoad()
   }
@@ -37,20 +45,23 @@ function Notes(props) {
     <NotesElement>
       <Header>
         <Title>Notes</Title>
-        <Button onClick={onLoad}>ReFresh</Button>
+        <Button onClick={onLoad}>⭮</Button>
       </Header>
       <Content>
         {props.children.map((o) => (
-          <Note key={o.id}>{o.content}</Note>
+          <Note key={o.id} id={o.id} onDelete={props.onDelete}>
+            {o.content}
+          </Note>
         ))}
       </Content>
-      <Form />
+      <Form onChange={props.onChange} note={props.note} onSubmit={props.onSubmit} />
     </NotesElement>
   )
 }
 
 Notes.propTypes = {
   onLoad: PropTypes.func,
+  onChange: PropTypes.func,
 }
 
 export default Notes
