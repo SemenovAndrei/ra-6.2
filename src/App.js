@@ -12,13 +12,15 @@ function App() {
   const [notes, setNotes] = useState([])
 
   const loadNotes = () => {
-    fetch(process.env.REACT_APP_NOTES_URL, { method: 'GET' })
+    // fetch(process.env.REACT_APP_NOTES_URL, { method: 'GET' })
+    fetch('https://ra-6-2-server.herokuapp.com/notes', { method: 'GET' })
       .then((res) => res.json())
       .then((notes) => setNotes(notes))
   }
 
   const addNotes = () => {
-    fetch(process.env.REACT_APP_NOTES_URL, {
+    // fetch(process.env.REACT_APP_NOTES_URL, {
+    fetch('https://ra-6-2-server.herokuapp.com/notes', {
       method: 'POST',
       body: JSON.stringify({ content: form.note }),
       headers: {
@@ -31,9 +33,10 @@ function App() {
   }
 
   const deleteNote = (id) => {
-    fetch(process.env.REACT_APP_NOTES_URL + '/' + id, { method: 'DELETE' }).then((res) =>
-      res.status === 204 ? loadNotes() : null
-    )
+    // fetch(process.env.REACT_APP_NOTES_URL + '/' + id, { method: 'DELETE' }).then((res) =>
+    fetch('https://ra-6-2-server.herokuapp.com/notes/' + id, {
+      method: 'DELETE',
+    }).then((res) => (res.status === 204 ? loadNotes() : null))
   }
 
   useEffect(() => loadNotes(), [])
