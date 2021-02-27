@@ -4,4 +4,4 @@
 
 [GH-Pages](https://i-hit.github.io/ra-6.2/)
 
-[Heroku](https://ra-6-2-server.herokuapp.com/)
+[Heroku](https://ra-6-2-server.herokuapp.com/notes)
